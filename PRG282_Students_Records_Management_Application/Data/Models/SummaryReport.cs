@@ -30,7 +30,7 @@ namespace PRG282_Students_Records_Management_Application.Data.Models
             {
                 if(Student.ListOfStudents.Count <= 0)
                 {
-                    MessageBox.Show(" 0 students and 0 average age");
+                    //MessageBox.Show(" 0 students and 0 average age");
                     SummaryReport summaryReport = new SummaryReport();
                     return summaryReport;
                 }
@@ -45,7 +45,7 @@ namespace PRG282_Students_Records_Management_Application.Data.Models
 
                     int averageAge = age / totalStudents;
                     SummaryReport summaryReport = new SummaryReport(totalStudents,averageAge);
-                    MessageBox.Show($"{summaryReport.TotalNumberOfStudents} total students and {summaryReport.AverageStudentAge} average student age");
+                    //MessageBox.Show($"{summaryReport.TotalNumberOfStudents} total students and {summaryReport.AverageStudentAge} average student age");
                     return summaryReport;
                 }
                 else
