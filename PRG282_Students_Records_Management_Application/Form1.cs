@@ -175,6 +175,9 @@ namespace PRG282_Students_Records_Management_Application
             button7.Text = "Generate Report";
             button7.ForeColor = Color.White;
 
+            label3.Text = "Menu";
+            label3.Font = new Font(label3.Font.FontFamily, 40);
+
 
         }
 
