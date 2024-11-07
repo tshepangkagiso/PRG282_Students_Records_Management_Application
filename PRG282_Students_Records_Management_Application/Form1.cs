@@ -19,6 +19,11 @@ namespace PRG282_Students_Records_Management_Application
         {
             InitializeComponent();
         }
+
+        private void BackToMenu()
+        {
+            panel2.Hide();
+        }
         private void RemovePlaceholder(object sender, EventArgs e)
         {
             if (textBox1.Text == "Username")
@@ -73,6 +78,77 @@ namespace PRG282_Students_Records_Management_Application
             }
         }
 
+        private void RemovePlaceholderID(object sender, EventArgs e)
+        {
+            if (textBox4.Text == "Student ID")
+            {
+                textBox4.Text = "";
+                textBox4.ForeColor = Color.Black;
+            }
+        }
+
+        private void SetPlaceholderID(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox4.Text))
+            {
+                textBox4.Text = "Student ID";
+                textBox4.ForeColor = Color.Gray;
+            }
+        }
+
+        private void RemovePlaceholderName(object sender, EventArgs e)
+        {
+            if (textBox5.Text == "Name")
+            {
+                textBox5.Text = "";
+                textBox5.ForeColor = Color.Black;
+            }
+        }
+
+        private void SetPlaceholderName(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox5.Text))
+            {
+                textBox5.Text = "Name";
+                textBox5.ForeColor = Color.Gray;
+            }
+        }
+
+        private void RemovePlaceholderAge(object sender, EventArgs e)
+        {
+            if (textBox6.Text == "Age")
+            {
+                textBox6.Text = "";
+                textBox6.ForeColor = Color.Black;
+            }
+        }
+
+        private void SetPlaceholderAge(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox6.Text))
+            {
+                textBox6.Text = "Age";
+                textBox6.ForeColor = Color.Gray;
+            }
+        }
+
+        private void RemovePlaceholderCourse(object sender, EventArgs e)
+        {
+            if (textBox7.Text == "Course")
+            {
+                textBox7.Text = "";
+                textBox7.ForeColor = Color.Black;
+            }
+        }
+
+        private void SetPlaceholderCourse(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox7.Text))
+            {
+                textBox7.Text = "Course";
+                textBox7.ForeColor = Color.Gray;
+            }
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
             //write data from files as soon as app loads.
@@ -140,7 +216,9 @@ namespace PRG282_Students_Records_Management_Application
             label2.Font = new Font(label2.Font.FontFamily, 40);
 
             panel1.Hide();
+            panel2.Hide(); ;
             panel1.BackColor = Color.White;
+            panel2.BackColor = Color.White;
 
             //Menu
             button3.FlatStyle = FlatStyle.Flat;
@@ -178,6 +256,42 @@ namespace PRG282_Students_Records_Management_Application
             label3.Text = "Menu";
             label3.Font = new Font(label3.Font.FontFamily, 40);
 
+            //Add Form
+            pictureBox2.SizeMode = PictureBoxSizeMode.CenterImage;
+
+            button8.FlatStyle = FlatStyle.Flat;
+            button8.FlatAppearance.BorderSize = 0;
+            button8.BackColor = Color.Red;
+            button8.Text = "Back";
+            button8.ForeColor = Color.White;
+
+            button9.FlatStyle = FlatStyle.Flat;
+            button9.FlatAppearance.BorderSize = 0;
+            button9.BackColor = Color.Black;
+            button9.Text = "Add Student";
+            button9.ForeColor = Color.White;
+
+            textBox4.Text = "Student ID";
+            textBox4.ForeColor = Color.Gray;
+            textBox4.Enter += RemovePlaceholderID;
+            textBox4.Leave += SetPlaceholderID;
+
+            textBox5.Text = "Name";
+            textBox5.ForeColor = Color.Gray;
+            textBox5.Enter += RemovePlaceholderName;
+            textBox5.Leave += SetPlaceholderName;
+
+            textBox6.Text = "Age";
+            textBox6.ForeColor = Color.Gray;
+            textBox6.Enter += RemovePlaceholderAge;
+            textBox6.Leave += SetPlaceholderAge;
+
+            textBox7.Text = "Course";
+            textBox7.ForeColor = Color.Gray;
+            textBox7.Enter += RemovePlaceholderCourse;
+            textBox7.Leave += SetPlaceholderCourse;
+
+
 
         }
 
@@ -205,9 +319,10 @@ namespace PRG282_Students_Records_Management_Application
             panel1.Show();
         }
 
+        //This code underneath is for the MENU. Just scroll, DO NOT TOUCH...just scroll down to your form
         private void button3_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Boom the add form shows");
+            panel2.Show();
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -229,6 +344,19 @@ namespace PRG282_Students_Records_Management_Application
         {
 
             MessageBox.Show("Boom the report form shows");
+        }
+
+        //Everything underneath here would be code for various forms
+        //but it will only be maximum 2 buttons per form mainly, back button and crud button so do not stress
+        private void button8_Click(object sender, EventArgs e)
+        {
+            BackToMenu();
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            //add button
+            MessageBox.Show("Student has been added. Just kidding put the code wena");
         }
     }
 }
