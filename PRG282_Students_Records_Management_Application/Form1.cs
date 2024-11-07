@@ -19,11 +19,46 @@ namespace PRG282_Students_Records_Management_Application
         {
             InitializeComponent();
         }
-        
+        private void RemovePlaceholder(object sender, EventArgs e)
+        {
+            if (textBox1.Text == "Username")
+            {
+                textBox1.Text = "";
+                textBox1.ForeColor = Color.Black; // Set to regular text color
+            }
+        }
+
+        private void SetPlaceholder(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox1.Text))
+            {
+                textBox1.Text = "Username";
+                textBox1.ForeColor = Color.Gray;
+            }
+        }
+
+        private void RemovePlaceholder1(object sender, EventArgs e)
+        {
+            if (textBox2.Text == "Password")
+            {
+                textBox2.Text = "";
+                textBox2.ForeColor = Color.Black; // Set to regular text color
+            }
+        }
+
+        private void SetPlaceholder1(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                textBox2.Text = "Password";
+                textBox2.ForeColor = Color.Gray;
+            }
+        }
+
         private void Form1_Load(object sender, EventArgs e)
         {
             //write data from files as soon as app loads.
-            WriteHandler.WriteStudentsFile();
+            /**WriteHandler.WriteStudentsFile();
             WriteHandler.WriteSummaryReportFile();
 
             //Get the data from files as soon as app loads.
@@ -37,7 +72,32 @@ namespace PRG282_Students_Records_Management_Application
             bindingSource2.DataSource = summaryReport;
 
             dataGridView1.DataSource = bindingSource1;
-            dataGridView2.DataSource = bindingSource2;
+            dataGridView2.DataSource = bindingSource2;**/
+
+            this.Text= "Student Records Management Application";
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.BackColor = Color.White;
+
+           
+            pictureBox1.SizeMode=PictureBoxSizeMode.CenterImage;
+            Panel bottomBorder = new Panel();
+           
+           
+            // Add Panel to the form
+            this.Controls.Add(bottomBorder);
+            textBox1.Text = "Username"; // Set initial placeholder text
+            textBox1.ForeColor = Color.Gray;
+            textBox1.Enter += RemovePlaceholder;
+            textBox1.Leave += SetPlaceholder;
+
+            textBox2.Text = "Password"; // Set initial placeholder text
+            textBox2.ForeColor = Color.Gray;
+            textBox2.Enter += RemovePlaceholder1;
+            textBox2.Leave += SetPlaceholder1;
+
+
+
         }
 
     }
