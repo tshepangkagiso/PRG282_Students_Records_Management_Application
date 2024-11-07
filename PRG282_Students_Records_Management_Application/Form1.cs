@@ -355,7 +355,10 @@ namespace PRG282_Students_Records_Management_Application
             BindingSource bindingSource2 = new BindingSource();
             bindingSource2.DataSource = summaryReport;
 
+            pictureBox3.Hide();
             dataGridView1.DataSource = bindingSource1;
+            dataGridView2.Hide();
+            dataGridView1.Show();
             //dataGridView2.DataSource = bindingSource2;
         }
 
@@ -373,7 +376,27 @@ namespace PRG282_Students_Records_Management_Application
         private void button7_Click(object sender, EventArgs e)
         {
 
-            MessageBox.Show("Boom the report form shows");
+            BackToMenu();
+            panel2.Show();
+            panel3.Show();
+            WriteHandler.WriteStudentsFile();
+            WriteHandler.WriteSummaryReportFile();
+
+            //Get the data from files as soon as app loads.
+            Student.ListOfStudents = ReadHandler.ReadStudentsFile();
+            SummaryReport summaryReport = ReadHandler.ReadSummaryReportFile();
+
+            BindingSource bindingSource1 = new BindingSource();
+            bindingSource1.DataSource = Student.ListOfStudents;
+
+            BindingSource bindingSource2 = new BindingSource();
+            bindingSource2.DataSource = summaryReport;
+
+            pictureBox3.Show();
+            dataGridView1.DataSource = bindingSource1;
+            dataGridView2.Show();
+            dataGridView1.Hide();
+            dataGridView2.DataSource = bindingSource2;
         }
 
         //Everything underneath here would be code for various forms
