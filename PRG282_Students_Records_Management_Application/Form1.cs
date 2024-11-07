@@ -139,6 +139,42 @@ namespace PRG282_Students_Records_Management_Application
             label2.Text = "Sign In";
             label2.Font = new Font(label2.Font.FontFamily, 40);
 
+            panel1.Hide();
+            panel1.BackColor = Color.White;
+
+            //Menu
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.FlatAppearance.BorderSize = 0;
+
+            button3.BackColor = Color.Black;
+            button3.Text = "Add Students";
+            button3.ForeColor = Color.White;
+
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.FlatAppearance.BorderSize = 0;
+
+            button4.BackColor = Color.Black;
+            button4.Text = "View Students";
+            button4.ForeColor = Color.White;
+
+            button5.FlatStyle = FlatStyle.Flat;
+            button5.FlatAppearance.BorderSize = 0;
+            button5.BackColor = Color.Black;
+            button5.Text = "Update Students";
+            button5.ForeColor = Color.White;
+
+            button6.FlatStyle = FlatStyle.Flat;
+            button6.FlatAppearance.BorderSize = 0;
+            button6.BackColor = Color.Black;
+            button6.Text = "Delete Students";
+            button6.ForeColor = Color.White;
+
+            button7.FlatStyle = FlatStyle.Flat;
+            button7.FlatAppearance.BorderSize = 0;
+            button7.BackColor = Color.Black;
+            button7.Text = "Generate Report";
+            button7.ForeColor = Color.White;
+
 
         }
 
@@ -155,12 +191,41 @@ namespace PRG282_Students_Records_Management_Application
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This is where you put the method to sign in");
+            MessageBox.Show("This is where you put the method to sign in but for now I will let you in");
+            panel1.Show();
+            
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This is where the log in method would go");
+            MessageBox.Show("This is where the log in method would go, but I am too kind so I will not keep you out");
+            panel1.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Boom the add form shows");
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Boom the view form shows");
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Boom the update form shows");
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Boom the delete form shows");
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+
+            MessageBox.Show("Boom the report form shows");
         }
     }
 }
