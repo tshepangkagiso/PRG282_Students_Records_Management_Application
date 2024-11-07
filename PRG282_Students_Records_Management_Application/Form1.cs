@@ -157,5 +157,10 @@ namespace PRG282_Students_Records_Management_Application
         {
             MessageBox.Show("This is where you put the method to sign in");
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This is where the log in method would go");
+        }
     }
 }
