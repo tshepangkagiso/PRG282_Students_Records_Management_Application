@@ -23,6 +23,7 @@ namespace PRG282_Students_Records_Management_Application
         private void BackToMenu()
         {
             panel2.Hide();
+            panel3.Hide();
         }
         private void RemovePlaceholder(object sender, EventArgs e)
         {
@@ -216,21 +217,22 @@ namespace PRG282_Students_Records_Management_Application
             label2.Font = new Font(label2.Font.FontFamily, 40);
 
             panel1.Hide();
-            panel2.Hide(); ;
+            panel2.Hide();
+            panel3.Hide();
             panel1.BackColor = Color.White;
             panel2.BackColor = Color.White;
+            panel3.BackColor = Color.White;
+
 
             //Menu
             button3.FlatStyle = FlatStyle.Flat;
             button3.FlatAppearance.BorderSize = 0;
-
             button3.BackColor = Color.Black;
             button3.Text = "Add Students";
             button3.ForeColor = Color.White;
 
             button4.FlatStyle = FlatStyle.Flat;
             button4.FlatAppearance.BorderSize = 0;
-
             button4.BackColor = Color.Black;
             button4.Text = "View Students";
             button4.ForeColor = Color.White;
@@ -292,6 +294,15 @@ namespace PRG282_Students_Records_Management_Application
             textBox7.Leave += SetPlaceholderCourse;
 
 
+            //View Students Form
+            button10.FlatStyle = FlatStyle.Flat;
+            button10.FlatAppearance.BorderSize = 0;
+            button10.BackColor = Color.Red;
+            button10.Text = "Back";
+            button10.ForeColor = Color.White;
+
+
+
 
         }
 
@@ -322,17 +333,36 @@ namespace PRG282_Students_Records_Management_Application
         //This code underneath is for the MENU. Just scroll, DO NOT TOUCH...just scroll down to your form
         private void button3_Click(object sender, EventArgs e)
         {
+            BackToMenu();
             panel2.Show();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Boom the view form shows");
+            BackToMenu();
+            panel2.Show();
+            panel3.Show();
+            WriteHandler.WriteStudentsFile();
+            WriteHandler.WriteSummaryReportFile();
+
+            //Get the data from files as soon as app loads.
+            Student.ListOfStudents = ReadHandler.ReadStudentsFile();
+            SummaryReport summaryReport = ReadHandler.ReadSummaryReportFile();
+
+            BindingSource bindingSource1 = new BindingSource();
+            bindingSource1.DataSource = Student.ListOfStudents;
+
+            BindingSource bindingSource2 = new BindingSource();
+            bindingSource2.DataSource = summaryReport;
+
+            dataGridView1.DataSource = bindingSource1;
+            //dataGridView2.DataSource = bindingSource2;
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Boom the update form shows");
+         
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -348,6 +378,8 @@ namespace PRG282_Students_Records_Management_Application
 
         //Everything underneath here would be code for various forms
         //but it will only be maximum 2 buttons per form mainly, back button and crud button so do not stress
+
+        //this is for the add form
         private void button8_Click(object sender, EventArgs e)
         {
             BackToMenu();
@@ -357,6 +389,11 @@ namespace PRG282_Students_Records_Management_Application
         {
             //add button
             MessageBox.Show("Student has been added. Just kidding put the code wena");
+        }
+        //this is for the view form
+        private void button10_Click(object sender, EventArgs e)
+        {
+            BackToMenu();
         }
     }
 }
