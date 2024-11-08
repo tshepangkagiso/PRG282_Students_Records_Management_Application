@@ -363,6 +363,7 @@ namespace PRG282_Students_Records_Management_Application
             bindingSource2.DataSource = summaryReport;
 
             pictureBox3.Hide();
+            button11.Hide();
             dataGridView1.DataSource = bindingSource1;
             dataGridView2.Hide();
             dataGridView1.Show();
