@@ -301,6 +301,13 @@ namespace PRG282_Students_Records_Management_Application
             button10.Text = "Back";
             button10.ForeColor = Color.White;
 
+            button11.FlatStyle = FlatStyle.Flat;
+            button11.FlatAppearance.BorderSize = 0;
+            button11.BackColor = Color.Red;
+            button11.Text = "Delete";
+            button11.ForeColor = Color.White;
+            button11.Hide();
+
 
 
 
@@ -370,7 +377,28 @@ namespace PRG282_Students_Records_Management_Application
 
         private void button6_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Boom the delete form shows");
+            BackToMenu();
+            panel2.Show();
+            panel3.Show();
+            WriteHandler.WriteStudentsFile();
+            WriteHandler.WriteSummaryReportFile();
+
+            
+            Student.ListOfStudents = ReadHandler.ReadStudentsFile();
+            SummaryReport summaryReport = ReadHandler.ReadSummaryReportFile();
+
+            BindingSource bindingSource1 = new BindingSource();
+            bindingSource1.DataSource = Student.ListOfStudents;
+
+            BindingSource bindingSource2 = new BindingSource();
+            bindingSource2.DataSource = summaryReport;
+
+            pictureBox3.Hide();
+            dataGridView1.DataSource = bindingSource1;
+            dataGridView1.Show();
+            dataGridView2.Hide();
+            dataGridView2.DataSource = bindingSource2;
+            button11.Show();
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -417,6 +445,13 @@ namespace PRG282_Students_Records_Management_Application
         private void button10_Click(object sender, EventArgs e)
         {
             BackToMenu();
+        }
+        
+        //Underneath is the delete button
+        private void button11_Click(object sender, EventArgs e)
+        {
+            //Delete Button
+            MessageBox.Show("Lol you just deleted something, ngiyadlala faka i-Code wena la uyeke ukudlala");
         }
     }
 }
