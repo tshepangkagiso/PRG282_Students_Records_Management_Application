@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.VisualBasic;
 
 namespace PRG282_Students_Records_Management_Application
 {
@@ -24,6 +25,7 @@ namespace PRG282_Students_Records_Management_Application
         {
             panel2.Hide();
             panel3.Hide();
+            panel4.Hide();
         }
         private void RemovePlaceholder(object sender, EventArgs e)
         {
@@ -150,6 +152,78 @@ namespace PRG282_Students_Records_Management_Application
                 textBox7.ForeColor = Color.Gray;
             }
         }
+
+        private void RemovePlaceholderID1(object sender, EventArgs e)
+        {
+            if (textBox8.Text == "Student ID")
+            {
+                textBox8.Text = "";
+                textBox8.ForeColor = Color.Black;
+            }
+        }
+
+        private void SetPlaceholderID1(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox8.Text))
+            {
+                textBox8.Text = "Student ID";
+                textBox8.ForeColor = Color.Gray;
+            }
+        }
+
+        private void RemovePlaceholderName1(object sender, EventArgs e)
+        {
+            if (textBox9.Text == "Name")
+            {
+                textBox9.Text = "";
+                textBox9.ForeColor = Color.Black;
+            }
+        }
+
+        private void SetPlaceholderName1(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox9.Text))
+            {
+                textBox9.Text = "Name";
+                textBox9.ForeColor = Color.Gray;
+            }
+        }
+
+        private void RemovePlaceholderAge1(object sender, EventArgs e)
+        {
+            if (textBox10.Text == "Age")
+            {
+                textBox10.Text = "";
+                textBox10.ForeColor = Color.Black;
+            }
+        }
+
+        private void SetPlaceholderAge1(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox10.Text))
+            {
+                textBox10.Text = "Age";
+                textBox10.ForeColor = Color.Gray;
+            }
+        }
+
+        private void RemovePlaceholderCourse1(object sender, EventArgs e)
+        {
+            if (textBox11.Text == "Course")
+            {
+                textBox11.Text = "";
+                textBox11.ForeColor = Color.Black;
+            }
+        }
+
+        private void SetPlaceholderCourse1(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textBox11.Text))
+            {
+                textBox11.Text = "Course";
+                textBox7.ForeColor = Color.Gray;
+            }
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
             //write data from files as soon as app loads.
@@ -219,9 +293,11 @@ namespace PRG282_Students_Records_Management_Application
             panel1.Hide();
             panel2.Hide();
             panel3.Hide();
+            panel4.Hide();
             panel1.BackColor = Color.White;
             panel2.BackColor = Color.White;
             panel3.BackColor = Color.White;
+            panel4.BackColor = Color.White;
 
 
             //Menu
@@ -308,6 +384,52 @@ namespace PRG282_Students_Records_Management_Application
             button11.ForeColor = Color.White;
             button11.Hide();
 
+            //Update Form
+            button12.FlatStyle = FlatStyle.Flat;
+            button12.FlatAppearance.BorderSize = 0;
+            button12.BackColor = Color.Red;
+            button12.Text = "Back";
+            button12.ForeColor = Color.White;
+
+            button13.FlatStyle = FlatStyle.Flat;
+            button13.FlatAppearance.BorderSize = 0;
+            button13.BackColor = Color.Black;
+            button13.Text = "Update";
+            button13.ForeColor = Color.White;
+
+            button14.FlatStyle = FlatStyle.Flat;
+            button14.FlatAppearance.BorderSize = 0;
+            button14.BackColor = Color.Black;
+            button14.Text = "Update";
+            button14.ForeColor = Color.White;
+
+            button15.FlatStyle = FlatStyle.Flat;
+            button15.FlatAppearance.BorderSize = 0;
+            button15.BackColor = Color.Black;
+            button15.Text = "Update";
+            button15.ForeColor = Color.White;
+
+            textBox8.Text = "Student ID";
+            textBox8.ForeColor = Color.Gray;
+            textBox8.Enter += RemovePlaceholderID1;
+            textBox8.Leave += SetPlaceholderID1;
+
+            textBox9.Text = "Name";
+            textBox9.ForeColor = Color.Gray;
+            textBox9.Enter += RemovePlaceholderName1;
+            textBox9.Leave += SetPlaceholderName1;
+
+            textBox10.Text = "Age";
+            textBox10.ForeColor = Color.Gray;
+            textBox10.Enter += RemovePlaceholderAge1;
+            textBox10.Leave += SetPlaceholderAge1;
+
+            textBox11.Text = "Course";
+            textBox11.ForeColor = Color.Gray;
+            textBox11.Enter += RemovePlaceholderCourse1;
+            textBox11.Leave += SetPlaceholderCourse1;
+
+
 
 
 
@@ -372,8 +494,11 @@ namespace PRG282_Students_Records_Management_Application
 
         private void button5_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Boom the update form shows");
-         
+            BackToMenu();
+            panel2.Show();
+            panel3.Show();
+            panel4.Show();
+
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -453,6 +578,28 @@ namespace PRG282_Students_Records_Management_Application
         {
             //Delete Button
             MessageBox.Show("Lol you just deleted something, ngiyadlala faka i-Code wena la uyeke ukudlala");
+        }
+
+        //Update Form Button
+        private void button12_Click(object sender, EventArgs e)
+        {
+            BackToMenu();
+        }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            //Update Name from student ID in text box 8
+            MessageBox.Show("Update Name[Textbox9] from StudentID in textBox8");
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Update Age[Textbox10] from StudentID in textBox8");
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Update Course[Textbox11] from StudentID in textBox8");
         }
     }
 }
