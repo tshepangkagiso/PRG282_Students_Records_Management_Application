@@ -10,12 +10,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.VisualBasic;
+using System.Reflection.Emit;
 
 namespace PRG282_Students_Records_Management_Application
 {
     public partial class Form1 : Form
     {
-        
+
         public Form1()
         {
             InitializeComponent();
@@ -32,7 +33,7 @@ namespace PRG282_Students_Records_Management_Application
             if (textBox1.Text == "Username")
             {
                 textBox1.Text = "";
-                textBox1.ForeColor = Color.Black; 
+                textBox1.ForeColor = Color.Black;
             }
         }
 
@@ -50,7 +51,7 @@ namespace PRG282_Students_Records_Management_Application
             if (textBox2.Text == "Password")
             {
                 textBox2.Text = "";
-                textBox2.ForeColor = Color.Black; 
+                textBox2.ForeColor = Color.Black;
             }
         }
 
@@ -68,7 +69,7 @@ namespace PRG282_Students_Records_Management_Application
             if (textBox3.Text == "Confirm Password")
             {
                 textBox3.Text = "";
-                textBox3.ForeColor = Color.Black; 
+                textBox3.ForeColor = Color.Black;
             }
         }
 
@@ -243,29 +244,29 @@ namespace PRG282_Students_Records_Management_Application
             dataGridView1.DataSource = bindingSource1;
             dataGridView2.DataSource = bindingSource2;**/
 
-            this.Text= "Student Records Management Application";
+            this.Text = "Student Records Management Application";
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.BackColor = Color.White;
 
-           
-            pictureBox1.SizeMode=PictureBoxSizeMode.CenterImage;
+
+            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
             Panel bottomBorder = new Panel();
-           
-           
-           
+
+
+
             this.Controls.Add(bottomBorder);
-            textBox1.Text = "Username"; 
+            textBox1.Text = "Username";
             textBox1.ForeColor = Color.Gray;
             textBox1.Enter += RemovePlaceholder;
             textBox1.Leave += SetPlaceholder;
 
-            textBox2.Text = "Password"; 
+            textBox2.Text = "Password";
             textBox2.ForeColor = Color.Gray;
             textBox2.Enter += RemovePlaceholder1;
             textBox2.Leave += SetPlaceholder1;
 
-            textBox3.Text = "Confirm Password"; 
+            textBox3.Text = "Confirm Password";
             textBox3.ForeColor = Color.Gray;
             textBox3.Enter += RemovePlaceholder2;
             textBox3.Leave += SetPlaceholder2;
@@ -286,7 +287,6 @@ namespace PRG282_Students_Records_Management_Application
             button2.ForeColor = Color.White;
             button2.Hide();
             label1.Text = "Have An Account? Click here to Log In";
-
             label2.Text = "Sign In";
             label2.Font = new Font(label2.Font.FontFamily, 40);
 
@@ -443,14 +443,13 @@ namespace PRG282_Students_Records_Management_Application
             button2.Show();
             label2.Text = "Log In";
             label2.Font = new Font(label2.Font.FontFamily, 40);
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("This is where you put the method to sign in but for now I will let you in");
             panel1.Show();
-            
+
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -509,7 +508,7 @@ namespace PRG282_Students_Records_Management_Application
             WriteHandler.WriteStudentsFile();
             WriteHandler.WriteSummaryReportFile();
 
-            
+
             Student.ListOfStudents = ReadHandler.ReadStudentsFile();
             SummaryReport summaryReport = ReadHandler.ReadSummaryReportFile();
 
@@ -564,23 +563,23 @@ namespace PRG282_Students_Records_Management_Application
 
         private void button9_Click(object sender, EventArgs e)
         {
-            // Collects student data from text boxes
+            // Collecting student data from text boxes
             string studentID = textBox4.Text;
             string name = textBox5.Text;
             int age = int.TryParse(textBox6.Text, out int parsedAge) ? parsedAge : 0;
             string course = textBox7.Text;
 
-            // Validates the input
+            // Validate the input
             if (string.IsNullOrWhiteSpace(studentID) || string.IsNullOrWhiteSpace(name) || age <= 0 || string.IsNullOrWhiteSpace(course))
             {
                 MessageBox.Show("Please fill all fields with valid information.");
                 return;
             }
 
-            // Creates a new student and adds the stiudent it to the list
+            // Create a new student and add it to the list
             Student newStudent = new Student(int.Parse(studentID), name, age, course);
 
-            // Adds student to data and save
+            // Add student to data and save
             Student.ListOfStudents.Add(newStudent);
             WriteHandler.WriteStudentsFile();
 
@@ -590,39 +589,138 @@ namespace PRG282_Students_Records_Management_Application
             textBox6.Clear();
             textBox7.Clear();
         }
+
         //this is for the view form
         private void button10_Click(object sender, EventArgs e)
         {
             BackToMenu();
         }
-        
+
         //Underneath is the delete button
         private void button11_Click(object sender, EventArgs e)
         {
-            //Delete Button
-            MessageBox.Show("Lol you just deleted something, ngiyadlala faka i-Code wena la uyeke ukudlala");
+            // Get the selected student ID
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Please select a student to delete.");
+                return;
+            }
+
+            string studentID = dataGridView1.SelectedRows[0].Cells["_StudentID"].Value.ToString();
+
+            // Remove the student from the list
+            Student studentToRemove = Student.ListOfStudents.FirstOrDefault(s => s._StudentID == int.Parse(studentID));
+            if (studentToRemove != null)
+            {
+                Student.ListOfStudents.Remove(studentToRemove);
+                WriteHandler.WriteStudentsFile();
+                MessageBox.Show("Student deleted successfully.");
+
+                // Refresh the data grid view
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = Student.ListOfStudents;
+            }
         }
+
 
         //Update Form Button
         private void button12_Click(object sender, EventArgs e)
         {
             BackToMenu();
+            textBox8.Clear();
         }
 
         private void button13_Click(object sender, EventArgs e)
         {
-            //Update Name from student ID in text box 8
-            MessageBox.Show("Update Name[Textbox9] from StudentID in textBox8");
+            // Fetch updated data
+            string studentID = textBox8.Text;
+            string name = textBox9.Text;
+
+            // Find the student to update
+            Student studentToUpdate = Student.ListOfStudents.FirstOrDefault(s => s._StudentID == int.Parse(studentID));
+            if (studentToUpdate != null)
+            {
+                // Update student properties
+                studentToUpdate._StudentName = name;
+
+                WriteHandler.WriteStudentsFile();
+
+                MessageBox.Show("Student updated successfully.");
+
+                // Refresh the data grid view
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = Student.ListOfStudents;
+            }
+            else
+            {
+                MessageBox.Show("Student not found.");
+            }
+
+
+            textBox9.Clear();
         }
+
 
         private void button14_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Update Age[Textbox10] from StudentID in textBox8");
+            // Fetch updated data
+            string studentID = textBox8.Text;
+            int age = int.TryParse(textBox10.Text, out int parsedAge) ? parsedAge : 0;
+
+
+            // Find the student to update
+            Student studentToUpdate = Student.ListOfStudents.FirstOrDefault(s => s._StudentID == int.Parse(studentID));
+            if (studentToUpdate != null)
+            {
+                // Update student properties
+                studentToUpdate._StudentAge = age;
+
+
+                WriteHandler.WriteStudentsFile();
+
+                MessageBox.Show("Student updated successfully.");
+
+                // Refresh the data grid view
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = Student.ListOfStudents;
+            }
+            else
+            {
+                MessageBox.Show("Student not found.");
+            }
+
+
+            textBox10.Clear();
         }
 
         private void button15_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Update Course[Textbox11] from StudentID in textBox8");
+            // Fetch updated data
+            string studentID = textBox8.Text;
+            string course = textBox11.Text;
+
+            // Find the student to update
+            Student studentToUpdate = Student.ListOfStudents.FirstOrDefault(s => s._StudentID == int.Parse(studentID));
+            if (studentToUpdate != null)
+            {
+                // Update student properties
+                studentToUpdate._CourseName = course;
+
+                WriteHandler.WriteStudentsFile();
+
+                MessageBox.Show("Student updated successfully.");
+
+                // Refresh the data grid view
+                dataGridView1.DataSource = null;
+                dataGridView1.DataSource = Student.ListOfStudents;
+            }
+            else
+            {
+                MessageBox.Show("Student not found.");
+            }
+
+
+            textBox11.Clear();
         }
 
         private void panel4_Paint(object sender, PaintEventArgs e)
