@@ -564,8 +564,31 @@ namespace PRG282_Students_Records_Management_Application
 
         private void button9_Click(object sender, EventArgs e)
         {
-            //add button
-            MessageBox.Show("Student has been added. Just kidding put the code wena");
+            // Collects student data from text boxes
+            string studentID = textBox4.Text;
+            string name = textBox5.Text;
+            int age = int.TryParse(textBox6.Text, out int parsedAge) ? parsedAge : 0;
+            string course = textBox7.Text;
+
+            // Validates the input
+            if (string.IsNullOrWhiteSpace(studentID) || string.IsNullOrWhiteSpace(name) || age <= 0 || string.IsNullOrWhiteSpace(course))
+            {
+                MessageBox.Show("Please fill all fields with valid information.");
+                return;
+            }
+
+            // Creates a new student and adds the stiudent it to the list
+            Student newStudent = new Student(int.Parse(studentID), name, age, course);
+
+            // Adds student to data and save
+            Student.ListOfStudents.Add(newStudent);
+            WriteHandler.WriteStudentsFile();
+
+            MessageBox.Show("Student has been added successfully!");
+            textBox4.Clear();
+            textBox5.Clear();
+            textBox6.Clear();
+            textBox7.Clear();
         }
         //this is for the view form
         private void button10_Click(object sender, EventArgs e)
@@ -600,6 +623,11 @@ namespace PRG282_Students_Records_Management_Application
         private void button15_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Update Course[Textbox11] from StudentID in textBox8");
+        }
+
+        private void panel4_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
