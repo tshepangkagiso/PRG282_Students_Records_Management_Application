@@ -572,6 +572,7 @@ namespace PRG282_Students_Records_Management_Application
             dataGridView1.DataSource = bindingSource1;
             dataGridView2.Show();
             dataGridView1.Hide();
+            button11.Hide();
             dataGridView2.DataSource = bindingSource2;
         }
 
