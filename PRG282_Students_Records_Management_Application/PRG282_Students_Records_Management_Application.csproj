@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Data\Data Handlers\ReadHandler.cs" />
     <Compile Include="Data\Data Handlers\WriteHandler.cs" />
+    <Compile Include="Data\Models\Admin.cs" />
     <Compile Include="Data\Models\Student.cs" />
     <Compile Include="Data\Models\SummaryReport.cs" />
     <Compile Include="Form1.cs">

@@ -445,17 +445,40 @@ namespace PRG282_Students_Records_Management_Application
             label2.Font = new Font(label2.Font.FontFamily, 40);
         }
 
+        //registration
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This is where you put the method to sign in but for now I will let you in");
-            panel1.Show();
+            string name = textBox1.Text;
+            string password = textBox2.Text;
+            string confirmPassowrd = textBox3.Text;
+            bool isLogin = Admin.GetAdmin(name, password, confirmPassowrd);
+            if (isLogin)
+            {
+                MessageBox.Show("Welcome");
+                panel1.Show();
+            }
+            else
+            {
+                MessageBox.Show("You can only sign up at the office with the Dean to access this platform");
+            }
 
         }
 
+        //login
         private void button2_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("This is where the log in method would go, but I am too kind so I will not keep you out");
-            panel1.Show();
+            string name = textBox1.Text;
+            string password = textBox2.Text;
+            bool isLogin = Admin.GetAdmin(name, password);
+            if (isLogin)
+            {
+                MessageBox.Show("Welcome");
+                panel1.Show();
+            }
+            else
+            {
+                MessageBox.Show("incorrect admin credentials");
+            }
         }
 
         //This code underneath is for the MENU. Just scroll, DO NOT TOUCH...just scroll down to your form
