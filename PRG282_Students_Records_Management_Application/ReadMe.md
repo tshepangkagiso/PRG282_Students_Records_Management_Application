@@ -180,9 +180,9 @@ and provides a secure interface for administrators to perform essential student 
    - Data recovery options
 
 ---
-**Note**: This project in PRG 281.
+**Note**: This project in PRG 282.
 
-**Version**: 1.0.0  
+**Version**: 1.0.1 (Removed Delete Button Bug On Report Form)  
 **Last Updated**: November 10, 2024
 
 ---
